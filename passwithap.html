@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Pass with Action Points</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body style="font-family:Consolas;font-size:32px">
+    Pass with Action Points:
+    <ul>
+        <li>Password Protect Document<input type="checkbox" id="task1" class="task" /></li>
+        <li>Amend and Check Contact Name<input type="checkbox" id="task2" class="task" /></li>
+        <li>Amend and Check IP address<input type="checkbox" id="task3" class="task" /></li>
+    </ul>
+    <div id="KeepChecking" style="background-color:darkred;color:white;width:50%;align-content:center">Keep Checking</div>
+    <div id="SendForQA" style="background-color:green;color:white;width:50%;justify-content:center">Good to send to QA</div>
+    <script>
+        $(document).ready(function () {
+            $("#SendForQA").hide(); //hide send for qa message it initially
+            var taskToComplete;
+            var taskRunningtotal;
+            $(".task").click(function () {
+                //alert(this.id)
+                //count ticks update rolling total
+                taskToComplete = 3; //amend this dependant on number of tasks
+                taskRunningtotal = 0;
+                $("input[type='checkbox']:checked").each(function () {
+                    taskRunningtotal = taskRunningtotal + 1;
+                    return taskRunningtotal;
+                });
+                if (taskRunningtotal == taskToComplete) {
+                    $("#KeepChecking").hide();
+                    $("#SendForQA").show();
+                }
+                return taskRunningtotal;
+            });
+        });
+    </script>
+</body>
+</html>
